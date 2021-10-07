@@ -55,7 +55,7 @@ func UpdateTags(conn *datapipeline.DataPipeline, identifier string, oldTagsMap i
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &datapipeline.RemoveTagsInput{
 			PipelineId: aws.String(identifier),
-			TagKeys:    aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:    aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.RemoveTags(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *datapipeline.DataPipeline, identifier string, oldTagsMap i
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &datapipeline.AddTagsInput{
 			PipelineId: aws.String(identifier),
-			Tags:       Tags(updatedTags.IgnoreAws()),
+			Tags:       Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.AddTags(input)

@@ -55,7 +55,7 @@ func UpdateTags(conn *imagebuilder.Imagebuilder, identifier string, oldTagsMap i
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &imagebuilder.UntagResourceInput{
 			ResourceArn: aws.String(identifier),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *imagebuilder.Imagebuilder, identifier string, oldTagsMap i
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &imagebuilder.TagResourceInput{
 			ResourceArn: aws.String(identifier),
-			Tags:        Tags(updatedTags.IgnoreAws()),
+			Tags:        Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

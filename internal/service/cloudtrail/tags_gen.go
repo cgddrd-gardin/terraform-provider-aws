@@ -73,7 +73,7 @@ func UpdateTags(conn *cloudtrail.CloudTrail, identifier string, oldTagsMap inter
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &cloudtrail.RemoveTagsInput{
 			ResourceId: aws.String(identifier),
-			TagsList:   Tags(removedTags.IgnoreAws()),
+			TagsList:   Tags(removedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.RemoveTags(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *cloudtrail.CloudTrail, identifier string, oldTagsMap inter
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &cloudtrail.AddTagsInput{
 			ResourceId: aws.String(identifier),
-			TagsList:   Tags(updatedTags.IgnoreAws()),
+			TagsList:   Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.AddTags(input)

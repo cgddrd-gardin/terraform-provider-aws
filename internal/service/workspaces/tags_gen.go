@@ -73,7 +73,7 @@ func UpdateTags(conn *workspaces.WorkSpaces, identifier string, oldTagsMap inter
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &workspaces.DeleteTagsInput{
 			ResourceId: aws.String(identifier),
-			TagKeys:    aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:    aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.DeleteTags(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *workspaces.WorkSpaces, identifier string, oldTagsMap inter
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &workspaces.CreateTagsInput{
 			ResourceId: aws.String(identifier),
-			Tags:       Tags(updatedTags.IgnoreAws()),
+			Tags:       Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.CreateTags(input)

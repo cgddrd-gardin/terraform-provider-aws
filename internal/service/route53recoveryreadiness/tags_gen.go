@@ -55,7 +55,7 @@ func UpdateTags(conn *route53recoveryreadiness.Route53RecoveryReadiness, identif
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &route53recoveryreadiness.UntagResourceInput{
 			ResourceArn: aws.String(identifier),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *route53recoveryreadiness.Route53RecoveryReadiness, identif
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &route53recoveryreadiness.TagResourceInput{
 			ResourceArn: aws.String(identifier),
-			Tags:        Tags(updatedTags.IgnoreAws()),
+			Tags:        Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

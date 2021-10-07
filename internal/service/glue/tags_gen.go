@@ -55,7 +55,7 @@ func UpdateTags(conn *glue.Glue, identifier string, oldTagsMap interface{}, newT
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &glue.UntagResourceInput{
 			ResourceArn:  aws.String(identifier),
-			TagsToRemove: aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagsToRemove: aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *glue.Glue, identifier string, oldTagsMap interface{}, newT
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &glue.TagResourceInput{
 			ResourceArn: aws.String(identifier),
-			TagsToAdd:   Tags(updatedTags.IgnoreAws()),
+			TagsToAdd:   Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

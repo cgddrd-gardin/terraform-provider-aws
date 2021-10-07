@@ -88,7 +88,7 @@ func UpdateTags(conn *elb.ELB, identifier string, oldTagsMap interface{}, newTag
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &elb.RemoveTagsInput{
 			LoadBalancerNames: aws.StringSlice([]string{identifier}),
-			Tags:              TagKeys(removedTags.IgnoreAws()),
+			Tags:              TagKeys(removedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.RemoveTags(input)
@@ -101,7 +101,7 @@ func UpdateTags(conn *elb.ELB, identifier string, oldTagsMap interface{}, newTag
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &elb.AddTagsInput{
 			LoadBalancerNames: aws.StringSlice([]string{identifier}),
-			Tags:              Tags(updatedTags.IgnoreAws()),
+			Tags:              Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.AddTags(input)

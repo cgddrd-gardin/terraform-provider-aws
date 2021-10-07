@@ -55,7 +55,7 @@ func UpdateTags(conn *mq.MQ, identifier string, oldTagsMap interface{}, newTagsM
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &mq.DeleteTagsInput{
 			ResourceArn: aws.String(identifier),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.DeleteTags(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *mq.MQ, identifier string, oldTagsMap interface{}, newTagsM
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &mq.CreateTagsInput{
 			ResourceArn: aws.String(identifier),
-			Tags:        Tags(updatedTags.IgnoreAws()),
+			Tags:        Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.CreateTags(input)

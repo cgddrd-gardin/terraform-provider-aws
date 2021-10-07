@@ -73,7 +73,7 @@ func UpdateTags(conn *cloudfront.CloudFront, identifier string, oldTagsMap inter
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &cloudfront.UntagResourceInput{
 			Resource: aws.String(identifier),
-			TagKeys:  &cloudfront.TagKeys{Items: aws.StringSlice(removedTags.IgnoreAws().Keys())},
+			TagKeys:  &cloudfront.TagKeys{Items: aws.StringSlice(removedTags.IgnoreAWS().Keys())},
 		}
 
 		_, err := conn.UntagResource(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *cloudfront.CloudFront, identifier string, oldTagsMap inter
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &cloudfront.TagResourceInput{
 			Resource: aws.String(identifier),
-			Tags:     &cloudfront.Tags{Items: Tags(updatedTags.IgnoreAws())},
+			Tags:     &cloudfront.Tags{Items: Tags(updatedTags.IgnoreAWS())},
 		}
 
 		_, err := conn.TagResource(input)

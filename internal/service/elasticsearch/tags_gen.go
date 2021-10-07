@@ -73,7 +73,7 @@ func UpdateTags(conn *elasticsearchservice.ElasticsearchService, identifier stri
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &elasticsearchservice.RemoveTagsInput{
 			ARN:     aws.String(identifier),
-			TagKeys: aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys: aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.RemoveTags(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *elasticsearchservice.ElasticsearchService, identifier stri
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &elasticsearchservice.AddTagsInput{
 			ARN:     aws.String(identifier),
-			TagList: Tags(updatedTags.IgnoreAws()),
+			TagList: Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.AddTags(input)

@@ -73,7 +73,7 @@ func UpdateTags(conn *cloudhsmv2.CloudHSMV2, identifier string, oldTagsMap inter
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &cloudhsmv2.UntagResourceInput{
 			ResourceId: aws.String(identifier),
-			TagKeyList: aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeyList: aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *cloudhsmv2.CloudHSMV2, identifier string, oldTagsMap inter
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &cloudhsmv2.TagResourceInput{
 			ResourceId: aws.String(identifier),
-			TagList:    Tags(updatedTags.IgnoreAws()),
+			TagList:    Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

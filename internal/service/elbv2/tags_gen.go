@@ -73,7 +73,7 @@ func UpdateTags(conn *elbv2.ELBV2, identifier string, oldTagsMap interface{}, ne
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &elbv2.RemoveTagsInput{
 			ResourceArns: aws.StringSlice([]string{identifier}),
-			TagKeys:      aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:      aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.RemoveTags(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *elbv2.ELBV2, identifier string, oldTagsMap interface{}, ne
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &elbv2.AddTagsInput{
 			ResourceArns: aws.StringSlice([]string{identifier}),
-			Tags:         Tags(updatedTags.IgnoreAws()),
+			Tags:         Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.AddTags(input)

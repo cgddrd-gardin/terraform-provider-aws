@@ -55,7 +55,7 @@ func UpdateTags(conn *pinpoint.Pinpoint, identifier string, oldTagsMap interface
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &pinpoint.UntagResourceInput{
 			ResourceArn: aws.String(identifier),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *pinpoint.Pinpoint, identifier string, oldTagsMap interface
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &pinpoint.TagResourceInput{
 			ResourceArn: aws.String(identifier),
-			TagsModel:   &pinpoint.TagsModel{Tags: Tags(updatedTags.IgnoreAws())},
+			TagsModel:   &pinpoint.TagsModel{Tags: Tags(updatedTags.IgnoreAWS())},
 		}
 
 		_, err := conn.TagResource(input)

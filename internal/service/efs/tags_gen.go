@@ -73,7 +73,7 @@ func UpdateTags(conn *efs.EFS, identifier string, oldTagsMap interface{}, newTag
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &efs.UntagResourceInput{
 			ResourceId: aws.String(identifier),
-			TagKeys:    aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:    aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *efs.EFS, identifier string, oldTagsMap interface{}, newTag
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &efs.TagResourceInput{
 			ResourceId: aws.String(identifier),
-			Tags:       Tags(updatedTags.IgnoreAws()),
+			Tags:       Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

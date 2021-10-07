@@ -55,7 +55,7 @@ func UpdateTags(conn *cloudwatchlogs.CloudWatchLogs, identifier string, oldTagsM
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &cloudwatchlogs.UntagLogGroupInput{
 			LogGroupName: aws.String(identifier),
-			Tags:         aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			Tags:         aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagLogGroup(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *cloudwatchlogs.CloudWatchLogs, identifier string, oldTagsM
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &cloudwatchlogs.TagLogGroupInput{
 			LogGroupName: aws.String(identifier),
-			Tags:         Tags(updatedTags.IgnoreAws()),
+			Tags:         Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagLogGroup(input)

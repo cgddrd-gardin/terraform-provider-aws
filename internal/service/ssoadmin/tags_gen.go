@@ -75,7 +75,7 @@ func UpdateTags(conn *ssoadmin.SSOAdmin, identifier string, resourceType string,
 		input := &ssoadmin.UntagResourceInput{
 			ResourceArn: aws.String(identifier),
 			InstanceArn: aws.String(resourceType),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -89,7 +89,7 @@ func UpdateTags(conn *ssoadmin.SSOAdmin, identifier string, resourceType string,
 		input := &ssoadmin.TagResourceInput{
 			ResourceArn: aws.String(identifier),
 			InstanceArn: aws.String(resourceType),
-			Tags:        Tags(updatedTags.IgnoreAws()),
+			Tags:        Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

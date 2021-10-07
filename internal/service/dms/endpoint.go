@@ -329,7 +329,7 @@ func resourceEndpointCreate(d *schema.ResourceData, meta interface{}) error {
 		EndpointIdentifier: aws.String(d.Get("endpoint_id").(string)),
 		EndpointType:       aws.String(d.Get("endpoint_type").(string)),
 		EngineName:         aws.String(d.Get("engine_name").(string)),
-		Tags:               Tags(tags.IgnoreAws()),
+		Tags:               Tags(tags.IgnoreAWS()),
 	}
 
 	switch d.Get("engine_name").(string) {
@@ -482,7 +482,7 @@ func resourceEndpointRead(d *schema.ResourceData, meta interface{}) error {
 		return fmt.Errorf("error listing tags for DMS Endpoint (%s): %s", d.Get("endpoint_arn").(string), err)
 	}
 
-	tags = tags.IgnoreAws().IgnoreConfig(ignoreTagsConfig)
+	tags = tags.IgnoreAWS().IgnoreConfig(ignoreTagsConfig)
 
 	//lintignore:AWSR002
 	if err := d.Set("tags", tags.RemoveDefaultConfig(defaultTagsConfig).Map()); err != nil {

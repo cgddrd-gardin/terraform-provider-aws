@@ -73,7 +73,7 @@ func UpdateTags(conn *globalaccelerator.GlobalAccelerator, identifier string, ol
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &globalaccelerator.UntagResourceInput{
 			ResourceArn: aws.String(identifier),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *globalaccelerator.GlobalAccelerator, identifier string, ol
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &globalaccelerator.TagResourceInput{
 			ResourceArn: aws.String(identifier),
-			Tags:        Tags(updatedTags.IgnoreAws()),
+			Tags:        Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

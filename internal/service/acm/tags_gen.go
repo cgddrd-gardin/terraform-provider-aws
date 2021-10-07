@@ -73,7 +73,7 @@ func UpdateTags(conn *acm.ACM, identifier string, oldTagsMap interface{}, newTag
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &acm.RemoveTagsFromCertificateInput{
 			CertificateArn: aws.String(identifier),
-			Tags:           Tags(removedTags.IgnoreAws()),
+			Tags:           Tags(removedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.RemoveTagsFromCertificate(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *acm.ACM, identifier string, oldTagsMap interface{}, newTag
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &acm.AddTagsToCertificateInput{
 			CertificateArn: aws.String(identifier),
-			Tags:           Tags(updatedTags.IgnoreAws()),
+			Tags:           Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.AddTagsToCertificate(input)

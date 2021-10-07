@@ -633,14 +633,14 @@ func UpdateTags(conn {{ .ClientType }}, identifier string{{ if .TagResTypeElem }
 	}
 
 	if len(updatedTags) > 0 {
-		input.{{ .TagInTagsElem }} = Tags(updatedTags.IgnoreAws())
+		input.{{ .TagInTagsElem }} = Tags(updatedTags.IgnoreAWS())
 	}
 
 	if len(removedTags) > 0 {
 		{{- if .UntagInNeedTagType }}
-		input.{{ .UntagInTagsElem }} = Tags(removedTags.IgnoreAws())
+		input.{{ .UntagInTagsElem }} = Tags(removedTags.IgnoreAWS())
 		{{- else if .UntagInNeedTagKeyType }}
-		input.{{ .UntagInTagsElem }} = TagKeys(removedTags.IgnoreAws())
+		input.{{ .UntagInTagsElem }} = TagKeys(removedTags.IgnoreAWS())
 		{{- else if .UntagInCustomVal }}
 		input.{{ .UntagInTagsElem }} = {{ .UntagInCustomVal }}
 		{{- else }}
@@ -672,13 +672,13 @@ func UpdateTags(conn {{ .ClientType }}, identifier string{{ if .TagResTypeElem }
 			{{- end }}
 			{{- end }}
 			{{- if .UntagInNeedTagType }}
-			{{ .UntagInTagsElem }}:       Tags(removedTags.IgnoreAws()),
+			{{ .UntagInTagsElem }}:       Tags(removedTags.IgnoreAWS()),
 			{{- else if .UntagInNeedTagKeyType }}
-			{{ .UntagInTagsElem }}:       TagKeys(removedTags.IgnoreAws()),
+			{{ .UntagInTagsElem }}:       TagKeys(removedTags.IgnoreAWS()),
 			{{- else if .UntagInCustomVal }}
 			{{ .UntagInTagsElem }}:       {{ .UntagInCustomVal }},
 			{{- else }}
-			{{ .UntagInTagsElem }}:       aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			{{ .UntagInTagsElem }}:       aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 			{{- end }}
 		}
 
@@ -710,7 +710,7 @@ func UpdateTags(conn {{ .ClientType }}, identifier string{{ if .TagResTypeElem }
 			{{- if .TagInCustomVal }}
 			{{ .TagInTagsElem }}:       {{ .TagInCustomVal }},
 			{{- else }}
-			{{ .TagInTagsElem }}:       Tags(updatedTags.IgnoreAws()),
+			{{ .TagInTagsElem }}:       Tags(updatedTags.IgnoreAWS()),
 			{{- end }}
 		}
 

@@ -74,7 +74,7 @@ func UpdateTags(conn *kinesis.Kinesis, identifier string, oldTagsMap interface{}
 		for _, removedTags := range removedTags.Chunks(10) {
 			input := &kinesis.RemoveTagsFromStreamInput{
 				StreamName: aws.String(identifier),
-				TagKeys:    aws.StringSlice(removedTags.IgnoreAws().Keys()),
+				TagKeys:    aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 			}
 
 			_, err := conn.RemoveTagsFromStream(input)
@@ -89,7 +89,7 @@ func UpdateTags(conn *kinesis.Kinesis, identifier string, oldTagsMap interface{}
 		for _, updatedTags := range updatedTags.Chunks(10) {
 			input := &kinesis.AddTagsToStreamInput{
 				StreamName: aws.String(identifier),
-				Tags:       aws.StringMap(updatedTags.IgnoreAws().Map()),
+				Tags:       aws.StringMap(updatedTags.IgnoreAWS().Map()),
 			}
 
 			_, err := conn.AddTagsToStream(input)

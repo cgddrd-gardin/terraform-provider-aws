@@ -241,7 +241,7 @@ func UpdateTags(conn *autoscaling.AutoScaling, identifier string, resourceType s
 
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &autoscaling.DeleteTagsInput{
-			Tags: Tags(removedTags.IgnoreAws()),
+			Tags: Tags(removedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.DeleteTags(input)
@@ -253,7 +253,7 @@ func UpdateTags(conn *autoscaling.AutoScaling, identifier string, resourceType s
 
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &autoscaling.CreateOrUpdateTagsInput{
-			Tags: Tags(updatedTags.IgnoreAws()),
+			Tags: Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.CreateOrUpdateTags(input)

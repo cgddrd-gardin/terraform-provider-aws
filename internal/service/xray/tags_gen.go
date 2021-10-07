@@ -73,7 +73,7 @@ func UpdateTags(conn *xray.XRay, identifier string, oldTagsMap interface{}, newT
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &xray.UntagResourceInput{
 			ResourceARN: aws.String(identifier),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *xray.XRay, identifier string, oldTagsMap interface{}, newT
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &xray.TagResourceInput{
 			ResourceARN: aws.String(identifier),
-			Tags:        Tags(updatedTags.IgnoreAws()),
+			Tags:        Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

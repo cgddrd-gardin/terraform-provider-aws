@@ -73,7 +73,7 @@ func UpdateTags(conn *cloudwatchevents.CloudWatchEvents, identifier string, oldT
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &cloudwatchevents.UntagResourceInput{
 			ResourceARN: aws.String(identifier),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *cloudwatchevents.CloudWatchEvents, identifier string, oldT
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &cloudwatchevents.TagResourceInput{
 			ResourceARN: aws.String(identifier),
-			Tags:        Tags(updatedTags.IgnoreAws()),
+			Tags:        Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

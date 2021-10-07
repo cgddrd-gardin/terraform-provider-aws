@@ -82,7 +82,7 @@ func UpdateTags(conn *elasticbeanstalk.ElasticBeanstalk, identifier string, oldT
 	}
 
 	if len(updatedTags) > 0 {
-		input.TagsToAdd = Tags(updatedTags.IgnoreAws())
+		input.TagsToAdd = Tags(updatedTags.IgnoreAWS())
 	}
 
 	if len(removedTags) > 0 {

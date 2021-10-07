@@ -75,7 +75,7 @@ func UpdateTags(conn *ssm.SSM, identifier string, resourceType string, oldTagsMa
 		input := &ssm.RemoveTagsFromResourceInput{
 			ResourceId:   aws.String(identifier),
 			ResourceType: aws.String(resourceType),
-			TagKeys:      aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:      aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.RemoveTagsFromResource(input)
@@ -89,7 +89,7 @@ func UpdateTags(conn *ssm.SSM, identifier string, resourceType string, oldTagsMa
 		input := &ssm.AddTagsToResourceInput{
 			ResourceId:   aws.String(identifier),
 			ResourceType: aws.String(resourceType),
-			Tags:         Tags(updatedTags.IgnoreAws()),
+			Tags:         Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.AddTagsToResource(input)

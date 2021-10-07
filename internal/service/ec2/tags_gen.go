@@ -130,7 +130,7 @@ func UpdateTags(conn *ec2.EC2, identifier string, oldTagsMap interface{}, newTag
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &ec2.DeleteTagsInput{
 			Resources: aws.StringSlice([]string{identifier}),
-			Tags:      Tags(removedTags.IgnoreAws()),
+			Tags:      Tags(removedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.DeleteTags(input)
@@ -143,7 +143,7 @@ func UpdateTags(conn *ec2.EC2, identifier string, oldTagsMap interface{}, newTag
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &ec2.CreateTagsInput{
 			Resources: aws.StringSlice([]string{identifier}),
-			Tags:      Tags(updatedTags.IgnoreAws()),
+			Tags:      Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.CreateTags(input)

@@ -55,7 +55,7 @@ func UpdateTags(conn *kinesisvideo.KinesisVideo, identifier string, oldTagsMap i
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &kinesisvideo.UntagStreamInput{
 			StreamARN:  aws.String(identifier),
-			TagKeyList: aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeyList: aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagStream(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *kinesisvideo.KinesisVideo, identifier string, oldTagsMap i
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &kinesisvideo.TagStreamInput{
 			StreamARN: aws.String(identifier),
-			Tags:      Tags(updatedTags.IgnoreAws()),
+			Tags:      Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagStream(input)

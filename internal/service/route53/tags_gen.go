@@ -84,7 +84,7 @@ func UpdateTags(conn *route53.Route53, identifier string, resourceType string, o
 	}
 
 	if len(updatedTags) > 0 {
-		input.AddTags = Tags(updatedTags.IgnoreAws())
+		input.AddTags = Tags(updatedTags.IgnoreAWS())
 	}
 
 	if len(removedTags) > 0 {

@@ -55,7 +55,7 @@ func UpdateTags(conn *resourcegroups.ResourceGroups, identifier string, oldTagsM
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &resourcegroups.UntagInput{
 			Arn:  aws.String(identifier),
-			Keys: aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			Keys: aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.Untag(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *resourcegroups.ResourceGroups, identifier string, oldTagsM
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &resourcegroups.TagInput{
 			Arn:  aws.String(identifier),
-			Tags: Tags(updatedTags.IgnoreAws()),
+			Tags: Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.Tag(input)

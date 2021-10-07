@@ -55,7 +55,7 @@ func UpdateTags(conn *lightsail.Lightsail, identifier string, oldTagsMap interfa
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &lightsail.UntagResourceInput{
 			ResourceName: aws.String(identifier),
-			TagKeys:      aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:      aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.UntagResource(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *lightsail.Lightsail, identifier string, oldTagsMap interfa
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &lightsail.TagResourceInput{
 			ResourceName: aws.String(identifier),
-			Tags:         Tags(updatedTags.IgnoreAws()),
+			Tags:         Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.TagResource(input)

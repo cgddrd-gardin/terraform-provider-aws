@@ -73,7 +73,7 @@ func UpdateTags(conn *rds.RDS, identifier string, oldTagsMap interface{}, newTag
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &rds.RemoveTagsFromResourceInput{
 			ResourceName: aws.String(identifier),
-			TagKeys:      aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:      aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.RemoveTagsFromResource(input)
@@ -86,7 +86,7 @@ func UpdateTags(conn *rds.RDS, identifier string, oldTagsMap interface{}, newTag
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &rds.AddTagsToResourceInput{
 			ResourceName: aws.String(identifier),
-			Tags:         Tags(updatedTags.IgnoreAws()),
+			Tags:         Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.AddTagsToResource(input)

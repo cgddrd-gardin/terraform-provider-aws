@@ -55,7 +55,7 @@ func UpdateTags(conn *medialive.MediaLive, identifier string, oldTagsMap interfa
 	if removedTags := oldTags.Removed(newTags); len(removedTags) > 0 {
 		input := &medialive.DeleteTagsInput{
 			ResourceArn: aws.String(identifier),
-			TagKeys:     aws.StringSlice(removedTags.IgnoreAws().Keys()),
+			TagKeys:     aws.StringSlice(removedTags.IgnoreAWS().Keys()),
 		}
 
 		_, err := conn.DeleteTags(input)
@@ -68,7 +68,7 @@ func UpdateTags(conn *medialive.MediaLive, identifier string, oldTagsMap interfa
 	if updatedTags := oldTags.Updated(newTags); len(updatedTags) > 0 {
 		input := &medialive.CreateTagsInput{
 			ResourceArn: aws.String(identifier),
-			Tags:        Tags(updatedTags.IgnoreAws()),
+			Tags:        Tags(updatedTags.IgnoreAWS()),
 		}
 
 		_, err := conn.CreateTags(input)
