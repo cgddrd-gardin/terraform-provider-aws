@@ -48,7 +48,7 @@ func TestAccEC2VPNGatewayRoutePropagation_disappears(t *testing.T) {
 				Config: testAccVPNGatewayRoutePropagationBasicConfig(rName),
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckVPNGatewayRoutePropagationExists(resourceName),
-					acctest.CheckResourceDisappears(acctest.Provider, ResourceVPNGatewayRoutePropagation(), resourceName),
+					acctest.CheckResourceDisappears(acctest.Provider, tfec2.ResourceVPNGatewayRoutePropagation(), resourceName),
 				),
 				ExpectNonEmptyPlan: true,
 			},
